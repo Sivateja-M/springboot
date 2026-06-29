@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-redis-deployment
+  labels:
+    app: springboot-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-redis
+  template:
+    metadata:
+      labels:
+        app: springboot-redis
+    spec:
+      containers:
+      - name: springboot-redis-container
+        image: solidwave/springbootredis:4
+        ports:
+        - containerPort: 8080
