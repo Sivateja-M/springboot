@@ -39,6 +39,11 @@ jobs:
         context: .
         push: true
         tags: ${{ vars.DOCKERHUB_USERNAME }}/springbootredis:${{ github.run_number }} 
+    
+    # update image in k8s/Deployment.yaml
+    - name: Update image in k8s/Deployment.yaml
+      run: |
+        sed -i "s|image: solidwave/springbootredis:.*|image: ${{ vars.DOCKERHUB_USERNAME }}/springbootredis:${{ github.run_number }}|" k8s/Deployment.yaml
 
 
 
